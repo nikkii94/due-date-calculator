@@ -39,8 +39,8 @@
     const CalculateTimeLeft = (startDate, timeInMinutes) => {
 
         let endDate =  new Date(startDate);
-            endDate.setHours(WORK_TIME_END);
-            endDate.setMinutes(0);
+        endDate.setHours(WORK_TIME_END);
+        endDate.setMinutes(0);
 
         let availableTime =  new Date(endDate - startDate).getTime();
         let availableMinutes = availableTime / MILLISECONDS_TO_MINUTES;
@@ -82,10 +82,9 @@
 
     const CalculateDueDate = (submitDate, turnAroundTime) => {
 
-        let valid = validateData(submitDate, turnAroundTime);
-        if ( ! valid ){
-            console.log(valid);
-            return valid;
+        let validateResult = validateData(submitDate, turnAroundTime);
+        if ( validateResult !== true ){
+            return validateResult;
         }
 
         let dueDate = new Date(submitDate);
@@ -108,8 +107,8 @@
             while ( turnAroundTimeInMinutes > 0 ) {
 
                 let nextWorkingDay = new Date(GetNextWorkDay(dueDate));
-                    nextWorkingDay.setHours(WORK_TIME_START);
-                    nextWorkingDay.setMinutes(0);
+                nextWorkingDay.setHours(WORK_TIME_START);
+                nextWorkingDay.setMinutes(0);
 
                 dueDate = nextWorkingDay;
 
